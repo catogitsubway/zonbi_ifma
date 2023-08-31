@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Inimigo : MonoBehaviour
 {
+    public float VidaInimigo = 100f;
     private Animator animInimigo;
     private NavMeshAgent navMesh;
     private GameObject player;
@@ -32,6 +33,11 @@ public class Inimigo : MonoBehaviour
             maoInimigo.SetActive(true);
             animInimigo.SetBool("atack", true);
             StartCoroutine("ataque");
+        }
+
+        if(VidaInimigo <=0)
+        {
+            
         }
     }
 

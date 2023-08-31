@@ -12,14 +12,27 @@ public class WeaponController : MonoBehaviour
     public float timeToShoot = 0.1f;
     public float timeToReload = 3f;
     public float damage = 30;
+
+    bool canShoot;
+    bool reloading;
+    float intialTimeToShoot;
+    float intialTimeToReload;
     void Start()
     {
-        
+        intialTimeToShoot = timeToShoot;
+        intialTimeToReload = timeToReload;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Imput.GeyKey(KeyCode.Mouse0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            if(Physics.Raycast(ray, out, range)){
+                
+            }
+        }
     }
 }
