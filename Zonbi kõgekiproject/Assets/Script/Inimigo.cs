@@ -35,10 +35,11 @@ public class Inimigo : MonoBehaviour
             StartCoroutine("ataque");
         }
 
-        if(VidaInimigo <=0)
+        if(VidaInimigo <= 0)
         {
-            
+            animInimigo.SetBool("death", true);
         }
+        
     }
 
     IEnumerator ataque()

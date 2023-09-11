@@ -26,12 +26,22 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Imput.GeyKey(KeyCode.Mouse0))
+        if(Input.GetKey(KeyCode.Mouse0) && canShoot)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            if(Physics.Raycast(ray, out, range)){
+            if(Physics.Raycast(ray, out hit, range))
+            {
                 
+                if(hit.transform.tag == "inimigo")
+                {
+                    hit.transform.GetComponent<Inimigo>().Damage(amount: damage);   
+                }
+
+                if(hit.transform.tag == "cabecainimigo")
+                {
+                    hit.transform.GetComponent<Inimigo>().Damage(amount: 100);
+                }    
             }
         }
     }
