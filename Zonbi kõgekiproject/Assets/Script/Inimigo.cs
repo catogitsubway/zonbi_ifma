@@ -38,6 +38,7 @@ public class Inimigo : MonoBehaviour
         if(VidaInimigo <= 0)
         {
             animInimigo.SetBool("death", true);
+            
         }
         
     }
