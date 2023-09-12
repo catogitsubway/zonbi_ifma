@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform camPivot;
     [SerializeField] private Transform cam;
 
+    public Vector3 GetForwardDirection() => transform.forward;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.IShotHit;
 
 public class VasoScript : MonoBehaviour, IShotHit
 {
@@ -14,7 +13,7 @@ public class VasoScript : MonoBehaviour, IShotHit
 
     void Update()
     {
-        
+
     }
 
     void IShotHit.Hit(Vector3 direction)

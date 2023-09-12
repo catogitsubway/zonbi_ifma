@@ -10,10 +10,14 @@ public class Gun : MonoBehaviour
     Transform shotSpawn;
     Transform shellSpawn;
 
+    PlayerController fpsCam;
+
 
     private void Awake()
     {
         animator = transform.Find("Pistol").GetComponent<Animator>();
+
+        fpsCam = transform.GetComponent<PlayerController>();
         shotSpawn = transform.Find("shotSpawn");
         shellSpawn = transform.Find("shellSpawn");
     }
@@ -28,7 +32,23 @@ public class Gun : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.Play("fire", -1, 0);
+            
+            ShootRaycast();
         }
-
     }
+
+        void ShootRaycast() 
+        {
+
+            RaycastHit hitInfo;
+            if(Physics.Raycast(fpsCam.transform.position, fpsCam.GetForwardDirection(), out hitInfo, Mathf.Infinity, LayerMask.GetMask("hittable"))) {
+
+            IShotHit hitted = hitInfo.transform.GetComponent<IShotHit>();
+            if(hitted != null) {
+
+                hitted.Hit(fpsCam.GetForwardDirection());
+
+            }
+        }
+    }  
 }
