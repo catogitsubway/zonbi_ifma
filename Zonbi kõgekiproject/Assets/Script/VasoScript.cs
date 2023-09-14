@@ -18,6 +18,7 @@ public class VasoScript : MonoBehaviour, IShotHit
 
     void IShotHit.Hit(Vector3 direction)
     {
+        print("IShotHit");
         rigidbody.AddForce(Vector3.Scale(direction, new Vector3(50, 100, 50)));
     }
 

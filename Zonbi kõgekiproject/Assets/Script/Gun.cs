@@ -10,7 +10,7 @@ public class Gun : MonoBehaviour
     Transform shotSpawn;
     Transform shellSpawn;
 
-    PlayerController fpsCam;
+    GameObject fpsCam;
 
     string gunName = ("Pistol");
 
@@ -18,7 +18,8 @@ public class Gun : MonoBehaviour
     {
         animator = transform.Find(gunName).GetComponent<Animator>();
 
-        fpsCam = transform.GetComponent<PlayerController>();
+        fpsCam = GameObject.FindWithTag("Weapon");
+
         shotSpawn = transform.Find("shotSpawn");
         shellSpawn = transform.Find("shellSpawn");
     }
@@ -42,12 +43,28 @@ public class Gun : MonoBehaviour
         {
 
             RaycastHit hitInfo;
-            if(Physics.Raycast(fpsCam.transform.position, fpsCam.GetForwardDirection(), out hitInfo, Mathf.Infinity, LayerMask.GetMask("hittable"))) {
+            int Layer = LayerMask.GetMask("hittable");
 
+            print("Valor de Layer" + Layer);
+            print("Valor de fPScAM" + fpsCam);
+            // print("Valor de Position" + fpsCam.transform.position);
+            // print("Valor de Direction" + fpsCam.GetForwardDirection);
+
+            if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hitInfo, Mathf.Infinity, Layer))
+            {
+            print("ShotRayCast" + hitInfo);
+
+            GameObject Vaso = GameObject.FindWithTag ("vazo");
+            print("Vaso");
+
+            Rigidbody rb = Vaso.transform.GetComponent<Rigidbody>();
+
+            rb.AddForce(Vector3.Scale(fpsCam.transform.forward, new Vector3(50, 100, 50)));
             IShotHit hitted = hitInfo.transform.GetComponent<IShotHit>();
-            if(hitted != null) {
+            if(hitted != null)
+            {
 
-                hitted.Hit(fpsCam.GetForwardDirection());
+                hitted.Hit(fpsCam.transform.forward);
 
             }
         }
