@@ -12,10 +12,11 @@ public class Gun : MonoBehaviour
 
     PlayerController fpsCam;
 
+    string gunName = ("Pistol");
 
     private void Awake()
     {
-        animator = transform.Find("Pistol").GetComponent<Animator>();
+        animator = transform.Find(gunName).GetComponent<Animator>();
 
         fpsCam = transform.GetComponent<PlayerController>();
         shotSpawn = transform.Find("shotSpawn");
