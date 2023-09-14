@@ -8,6 +8,8 @@ TagManager:
   - maoInimigo
   - cabecainimigo
   - inimigo
+  - Weapon
+  - vazo
   layers:
   - Default
   - TransparentFX
