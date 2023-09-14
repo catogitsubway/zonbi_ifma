@@ -45,21 +45,13 @@ public class Gun : MonoBehaviour
             RaycastHit hitInfo;
             int Layer = LayerMask.GetMask("hittable");
 
-            print("Valor de Layer" + Layer);
-            print("Valor de fPScAM" + fpsCam);
-            // print("Valor de Position" + fpsCam.transform.position);
-            // print("Valor de Direction" + fpsCam.GetForwardDirection);
-
             if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hitInfo, Mathf.Infinity, Layer))
             {
-            print("ShotRayCast" + hitInfo);
+            
+            GameObject Inimigo = GameObject.FindWithTag("inimigo");
 
             GameObject Vaso = GameObject.FindWithTag ("vazo");
-            print("Vaso");
 
-            Rigidbody rb = Vaso.transform.GetComponent<Rigidbody>();
-
-            rb.AddForce(Vector3.Scale(fpsCam.transform.forward, new Vector3(50, 100, 50)));
             IShotHit hitted = hitInfo.transform.GetComponent<IShotHit>();
             if(hitted != null)
             {

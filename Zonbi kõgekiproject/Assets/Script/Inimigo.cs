@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Inimigo : MonoBehaviour
 {
+
     public float VidaInimigo = 100f;
     private Animator animInimigo;
     private NavMeshAgent navMesh;
@@ -16,14 +17,16 @@ public class Inimigo : MonoBehaviour
     {
         animInimigo = GetComponent<Animator>();
         navMesh = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        navMesh.speed = velocidadeInimigo;
+
         player = GameObject.FindWithTag("Player");
         maoInimigo = GameObject.FindWithTag("maoInimigo");
-        navMesh.speed = velocidadeInimigo;
         maoInimigo.SetActive(false);
     }
 
     void Update()
     {
+
         navMesh.destination = player.transform.position;
         animInimigo.SetBool("run", true);
         
