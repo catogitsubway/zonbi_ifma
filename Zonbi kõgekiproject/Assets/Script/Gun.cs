@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
     GameObject fpsCam;
 
     string gunName = ("Pistol");
+    public float damage = 10;
 
     private void Awake()
     {
@@ -31,15 +32,29 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
+
+    
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.Play("fire", -1, 0);
             
-            ShootRaycast();
-        }
-    }
+            //ShootRaycast();
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, transform.forward, out hit , 50))
+            {
+                Debug.DrawLine (transform.position, hit.point);
+            }
 
-        void ShootRaycast() 
+        }
+        /*if(Physics.Raycast(transform.position, transform.forward, 50))
+        {
+            Debug 
+        }*/
+    
+    }
+    
+
+        /*void ShootRaycast() 
         {
 
             RaycastHit hitInfo;
@@ -59,6 +74,6 @@ public class Gun : MonoBehaviour
                 hitted.Hit(fpsCam.transform.forward);
 
             }
-        }
-    }  
+        }*/
+    
 }

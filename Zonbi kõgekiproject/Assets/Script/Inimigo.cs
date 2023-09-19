@@ -6,15 +6,16 @@ using UnityEngine.AI;
 
 public class Inimigo : MonoBehaviour
 {
-
-    public float VidaInimigo = 100f;
     private Animator animInimigo;
     private NavMeshAgent navMesh;
     private GameObject player;
     public float velocidadeInimigo;
     private GameObject maoInimigo;
+
+
     void Start()
     {
+
         animInimigo = GetComponent<Animator>();
         navMesh = GetComponent<UnityEngine.AI.NavMeshAgent>();
         navMesh.speed = velocidadeInimigo;
@@ -36,13 +37,9 @@ public class Inimigo : MonoBehaviour
             maoInimigo.SetActive(true);
             animInimigo.SetBool("atack", true);
             StartCoroutine("ataque");
+
         }
 
-        if(VidaInimigo <= 0)
-        {
-            animInimigo.SetBool("death", true);
-            
-        }
         
     }
 
