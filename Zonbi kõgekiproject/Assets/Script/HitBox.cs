@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    public Health health;
+    public Inimigo inimigo;
 
     public void OnRayCastHit(Gun gun)
     {
-        health.TakeDamage(gun.damage);
+        inimigo.TakeDamage(gun.damage);
     }
 }

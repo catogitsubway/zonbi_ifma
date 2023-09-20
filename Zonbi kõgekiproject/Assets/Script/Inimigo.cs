@@ -6,7 +6,11 @@ using UnityEngine.AI;
 
 public class Inimigo : MonoBehaviour
 {
-    private Animator animInimigo;
+
+    public float maxHealth;
+    public float currentHealth;
+
+    public Animator animInimigo;
     private NavMeshAgent navMesh;
     private GameObject player;
     public float velocidadeInimigo;
@@ -15,6 +19,8 @@ public class Inimigo : MonoBehaviour
 
     void Start()
     {
+        
+        currentHealth = maxHealth;
 
         animInimigo = GetComponent<Animator>();
         navMesh = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -39,9 +45,18 @@ public class Inimigo : MonoBehaviour
             StartCoroutine("ataque");
 
         }
+        
+        if(currentHealth <= 0)
+
+        {
+            animInimigo.SetBool("death", true);
+        }
 
         
     }
+
+    public void TakeDamage(float amount){}
+
 
     IEnumerator ataque()
     {

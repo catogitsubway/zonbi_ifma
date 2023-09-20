@@ -38,22 +38,19 @@ public class Gun : MonoBehaviour
         {
             animator.Play("fire", -1, 0);
             
-            //ShootRaycast();
             RaycastHit hit;
             if(Physics.Raycast(transform.position, transform.forward, out hit , 50))
             {
+                Debug.Log("Está colidindo");
                 Debug.DrawLine (transform.position, hit.point);
             }
 
         }
-        /*if(Physics.Raycast(transform.position, transform.forward, 50))
-        {
-            Debug 
-        }*/
     
     }
     
 
+        //ShootRaycast();
         /*void ShootRaycast() 
         {
 
