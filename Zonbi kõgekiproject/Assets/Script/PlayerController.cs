@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadSceneAsync("GameOver");
             Cursor.lockState = CursorLockMode.None;
         }
-
+            
     }
 
     void OnCollisionEnter(Collision collision)

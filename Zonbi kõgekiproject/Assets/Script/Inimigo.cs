@@ -39,7 +39,7 @@ public class Inimigo : MonoBehaviour
         
         if (Vector3.Distance(transform.position, player.transform.position) < 1.5f)
         {
-            navMesh.speed = 0;
+            navMesh.speed = 1;
             maoInimigo.SetActive(true);
             animInimigo.SetBool("atack", true);
             StartCoroutine("ataque");
@@ -50,9 +50,9 @@ public class Inimigo : MonoBehaviour
 
         {
             animInimigo.SetBool("death", true);
+            navMesh.speed = 0;
         }
 
-        
     }
 
     public void TakeDamage(float amount){}

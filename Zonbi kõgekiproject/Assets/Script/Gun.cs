@@ -37,13 +37,6 @@ public class Gun : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.Play("fire", -1, 0);
-            
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, transform.forward, out hit , 50))
-            {
-                Debug.Log("Está colidindo");
-                Debug.DrawLine (transform.position, hit.point);
-            }
 
         }
     
