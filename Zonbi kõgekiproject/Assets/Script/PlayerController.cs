@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     { 
+       
+        
         dir = player.TransformVector(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized);
 
         rX = Mathf.Lerp(rX, Input.GetAxisRaw("Mouse X") * 2, 100 * Time.deltaTime);
@@ -49,6 +51,8 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadSceneAsync("GameOver");
             Cursor.lockState = CursorLockMode.None;
         }
+
+    
             
     }
 
