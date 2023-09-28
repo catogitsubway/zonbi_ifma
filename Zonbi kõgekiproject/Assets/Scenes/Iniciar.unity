@@ -485,9 +485,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6f36faa8245d0d443bc8878c6ae3bff5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 47363871}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6f36faa8245d0d443bc8878c6ae3bff5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 47363874}
   m_SourcePrefab: {fileID: 100100000, guid: 6f36faa8245d0d443bc8878c6ae3bff5, type: 3}
 --- !u!1 &47363861 stripped
 GameObject:
@@ -599,25 +596,6 @@ OffMeshLink:
   m_BiDirectional: 1
   m_Activated: 1
   m_AutoUpdatePositions: 0
---- !u!114 &47363874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 47363861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da13fdef82c76a4469f83ecdbf4dc5c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VidaPlayer: 100
-  player: {fileID: 0}
-  playerIsOnTheGround: 1
-  maxY: 0
-  rX: 0
-  camPivot: {fileID: 0}
-  cam: {fileID: 0}
 --- !u!4 &50270176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1070350730909333850, guid: 6f36faa8245d0d443bc8878c6ae3bff5, type: 3}
@@ -2869,7 +2847,7 @@ GameObject:
   - component: {fileID: 602607075}
   - component: {fileID: 602607074}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2939,7 +2917,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 602607075}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1188421212}
+        m_TargetAssemblyTypeName: Interface, Assembly-CSharp
+        m_MethodName: BackToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &602607075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4104,7 +4094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 27799505}
-  cena: 
+  cena: Mneu
+  cena2: Menu
 --- !u!4 &1188421213
 Transform:
   m_ObjectHideFlags: 0
@@ -4604,7 +4595,7 @@ GameObject:
   - component: {fileID: 1353603658}
   - component: {fileID: 1353603657}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Sair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4674,7 +4665,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1353603658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1188421212}
+        m_TargetAssemblyTypeName: Interface, Assembly-CSharp
+        m_MethodName: BackToOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1353603658
 MonoBehaviour:
   m_ObjectHideFlags: 0

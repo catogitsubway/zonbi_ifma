@@ -9,9 +9,10 @@ public class Interface : MonoBehaviour
 
     public GameObject pausePanel;
     public string cena;
+    public string cena2;
     void Start()
     {
-
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -28,15 +29,30 @@ public class Interface : MonoBehaviour
         if(isPaused)
         {
             isPaused = false;
-            pausePanel.SetActive(true);
-            Time.timeScale = 0;
+            Time.timeScale = 1f;
+            pausePanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         else
         {
             isPaused = true;
-            pausePanel.SetActive(false);
-            Time.timeScale = 1;
+            Time.timeScale = 0f;
+            pausePanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
+        
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(cena);
+    }
+
+    public void BackToOff()
+    {
+        SceneManager.LoadScene(cena2);
     }
 }
 
