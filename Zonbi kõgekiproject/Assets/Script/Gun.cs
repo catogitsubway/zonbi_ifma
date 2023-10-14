@@ -5,6 +5,9 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 
+    public float range = 20;
+    public float damageAmount = 20;
+
     Animator animator;
 
     Transform shotSpawn;
@@ -25,10 +28,6 @@ public class Gun : MonoBehaviour
         shellSpawn = transform.Find("shellSpawn");
     }
 
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -37,33 +36,22 @@ public class Gun : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.Play("fire", -1, 0);
-
+            Fire();
         }
-    
     }
-    
 
-        //ShootRaycast();
-        /*void ShootRaycast() 
+    private void Fire()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.forward, out hit, range))
         {
-
-            RaycastHit hitInfo;
-            int Layer = LayerMask.GetMask("hittable");
-
-            if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hitInfo, Mathf.Infinity, Layer))
+            Inimigo e = hit.transform.GetComponent<Inimigo>();
+            if(e != null)
             {
-            
-            GameObject Inimigo = GameObject.FindWithTag("inimigo");
-
-            GameObject Vaso = GameObject.FindWithTag ("vazo");
-
-            IShotHit hitted = hitInfo.transform.GetComponent<IShotHit>();
-            if(hitted != null)
-            {
-
-                hitted.Hit(fpsCam.transform.forward);
-
+                e.TakeDamage(damageAmount);
+                return;
             }
-        }*/
+        }
+    }
     
 }

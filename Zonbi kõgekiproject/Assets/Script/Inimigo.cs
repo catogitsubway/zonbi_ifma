@@ -17,7 +17,7 @@ public class Inimigo : MonoBehaviour
     private GameObject maoInimigo;
 
 
-    void Start()
+    void Awake()
     {
         
         currentHealth = maxHealth;
@@ -45,17 +45,17 @@ public class Inimigo : MonoBehaviour
             StartCoroutine("ataque");
 
         }
-        
-        if(currentHealth <= 0)
+    }
 
+    public void TakeDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+        if(currentHealth <= 0)
         {
             animInimigo.SetBool("death", true);
             navMesh.speed = 0;
         }
-
     }
-
-    public void TakeDamage(float amount){}
 
 
     IEnumerator ataque()
