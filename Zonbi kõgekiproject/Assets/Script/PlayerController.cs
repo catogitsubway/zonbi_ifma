@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public bool playerIsOnTheGround = true;
 
+    public float speed;
+    public float croushingSpeed;
+    bool croush, croushing;
+    float originalSpeed;
+
     [SerializeField] private float maxY;
     [SerializeField] private float rX;
 
@@ -23,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+        originalSpeed = speed;
 
     }
     void Update()
@@ -40,21 +46,17 @@ public class PlayerController : MonoBehaviour
 
         camPivot.position = Vector3.Lerp(camPivot.position, player.position, 10 * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && playerIsOnTheGround)
-        {
-            rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
-            playerIsOnTheGround = false; 
-        }
+        
         
         if(VidaPlayer <= 0)
         {
             SceneManager.LoadSceneAsync("GameOver");
             Cursor.lockState = CursorLockMode.None;
         }
-
-    
+        HandleInput();
             
     }
+    
 
     void OnCollisionEnter(Collision collision)
     {
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + dir * 10 * Time.fixedDeltaTime);
-
+        HandleMoviment();
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -75,6 +77,32 @@ public class PlayerController : MonoBehaviour
         if (collider.gameObject.tag == "maoInimigo")
         {
             VidaPlayer -= 10f;
+        }
+    }
+
+    void HandleMoviment()
+    {
+        if(croush && !croushing)
+        {
+            
+        }
+        if(croush && !croushing)
+        {
+
+        }
+    }
+
+    void HandleInput()
+    {
+        if (Input.GetButtonDown("Jump") && playerIsOnTheGround)
+        {
+            rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+            playerIsOnTheGround = false; 
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            croush = true;
         }
     }
 }

@@ -45,6 +45,7 @@ public class Inimigo : MonoBehaviour
             StartCoroutine("ataque");
 
         }
+       
     }
 
     public void TakeDamage(float damageAmount)
