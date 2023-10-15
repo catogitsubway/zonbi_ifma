@@ -10,6 +10,7 @@ TagManager:
   - inimigo
   - Weapon
   - vazo
+  - camera
   layers:
   - Default
   - TransparentFX
