@@ -21,6 +21,7 @@ public class Inimigo : MonoBehaviour
     {
         
         currentHealth = maxHealth;
+        
 
         animInimigo = GetComponent<Animator>();
         navMesh = GetComponent<UnityEngine.AI.NavMeshAgent>();

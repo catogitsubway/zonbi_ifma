@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
 
     public float range = 20;
     public float damageAmount = 20;
+    public float impactForce = 30;
 
     Animator animator;
 
@@ -16,7 +17,8 @@ public class Gun : MonoBehaviour
     GameObject fpsCam;
 
     string gunName = ("Pistol");
-    public float damage = 10;
+    public ParticleSystem muzzeFlash;
+
 
     private void Awake()
     {
@@ -39,9 +41,11 @@ public class Gun : MonoBehaviour
             Fire();
         }
     }
-
+    
     private void Fire()
     {
+        muzzeFlash.Play();
+
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, range))
         {
@@ -51,7 +55,11 @@ public class Gun : MonoBehaviour
                 e.TakeDamage(damageAmount);
                 return;
             }
+
+            if(hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * impactForce);
+            }
         }
     }
-    
 }
