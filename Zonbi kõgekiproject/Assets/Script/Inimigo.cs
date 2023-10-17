@@ -57,6 +57,7 @@ public class Inimigo : MonoBehaviour
             animInimigo.SetBool("death", true);
             navMesh.speed = 0;
         }
+
     }
 
 
