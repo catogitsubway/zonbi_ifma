@@ -16,9 +16,6 @@ public class PlayerController : MonoBehaviour
     public float croushingSpeed;
     bool croush, croushing;
     bool isCrouching = false; // Variável para controlar se o jogador está agachado
-
-    [SerializeField] private float maxY;
-    [SerializeField] private float rX;
     
     [SerializeField] private Transform camPivot;
     [SerializeField] private Transform cam;
@@ -37,15 +34,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         dir = player.TransformVector(new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized);
-
-        rX = Mathf.Lerp(rX, Input.GetAxisRaw("Mouse X") * 2, 100 * Time.deltaTime);
-        maxY = Mathf.Clamp(maxY - (Input.GetAxisRaw("Mouse Y") * 2 * 100 * Time.deltaTime), -30, 30);
-
-        player.Rotate(0, rX, 0, Space.World);
-
-        cam.rotation = Quaternion.Lerp(cam.rotation, Quaternion.Euler(maxY * 2, player.eulerAngles.y, 0), 100 * Time.deltaTime);
-
-        camPivot.position = Vector3.Lerp(camPivot.position, player.position, 10 * Time.deltaTime);
 
         if (VidaPlayer <= 0)
         {

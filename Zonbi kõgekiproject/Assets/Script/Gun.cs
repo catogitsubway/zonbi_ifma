@@ -55,6 +55,7 @@ public class Gun : MonoBehaviour
                 e.TakeDamage(damageAmount);
                 return;
             }
+            
 
             if(hit.rigidbody != null)
             {

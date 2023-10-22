@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Interface : MonoBehaviour
 {
+    [SerializeField]private GameObject mira;
     private bool isPaused;
 
     public GameObject pausePanel;
     public string cena;
-    public string cena2;
     void Start()
     {
         Time.timeScale = 1f;
@@ -31,6 +31,7 @@ public class Interface : MonoBehaviour
             isPaused = false;
             Time.timeScale = 1f;
             pausePanel.SetActive(false);
+            mira.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -39,6 +40,7 @@ public class Interface : MonoBehaviour
             isPaused = true;
             Time.timeScale = 0f;
             pausePanel.SetActive(true);
+            mira.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -50,9 +52,5 @@ public class Interface : MonoBehaviour
         SceneManager.LoadScene(cena);
     }
 
-    public void BackToOff()
-    {
-        SceneManager.LoadScene(cena2);
-    }
 }
 

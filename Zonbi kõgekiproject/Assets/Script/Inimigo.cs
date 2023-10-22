@@ -16,7 +16,6 @@ public class Inimigo : MonoBehaviour
     public float velocidadeInimigo;
     private GameObject maoInimigo;
 
-
     void Awake()
     {
         
