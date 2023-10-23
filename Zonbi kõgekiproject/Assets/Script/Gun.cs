@@ -4,62 +4,87 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public float ammo;
+    public float totalAmmo;
+    public float range;
+    public float impactForce;
+    public float damageAmount;
+    public float nextShoot;
+    public float shootTime;
+    public float num;
+    public float magazine;
+    public float reloadTime;
+    public float maxTime;
+    public bool shoot;
+    public bool isReloading; // Nova variável para controlar o processo de recarga
 
-    public float range = 20;
-    public float damageAmount = 20;
-    public float impactForce = 30;
-
-    Animator animator;
-
-    Transform shotSpawn;
-    Transform shellSpawn;
-
-    GameObject fpsCam;
-
-    string gunName = ("Pistol");
-    public ParticleSystem muzzeFlash;
-
-
-    private void Awake()
+    void Start()
     {
-        animator = transform.Find(gunName).GetComponent<Animator>();
-
-        fpsCam = GameObject.FindWithTag("Weapon");
-
-        shotSpawn = transform.Find("shotSpawn");
-        shellSpawn = transform.Find("shellSpawn");
+        reloadTime = maxTime;
     }
-
 
     void Update()
     {
-
-    
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetMouseButton(0) && ammo > 0 && Time.time > nextShoot)
         {
-            animator.Play("fire", -1, 0);
+            shoot = true;
+            nextShoot = Time.time + shootTime;
+            ammo--;
             Fire();
         }
-    }
-    
-    private void Fire()
-    {
-        muzzeFlash.Play();
 
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.forward, out hit, range))
+        if (Input.GetKeyDown(KeyCode.R) && ammo < magazine && !isReloading) // Verifica se não está recarregando
         {
-            Inimigo e = hit.transform.GetComponent<Inimigo>();
-            if(e != null)
-            {
-                e.TakeDamage(damageAmount);
-                return;
-            }
-            
+            StartReload();
+        }
 
-            if(hit.rigidbody != null)
+        if (isReloading)
+        {
+            Reload();
+        }
+    }
+
+    void StartReload()
+    {
+        if (totalAmmo > 0)
+        {
+            isReloading = true;
+        }
+    }
+
+    void Reload()
+    {
+        reloadTime -= Time.deltaTime;
+        if (reloadTime <= 0)
+        {
+            float bulletsToReload = Mathf.Min(magazine - ammo, totalAmmo);
+            ammo += bulletsToReload;
+            totalAmmo -= bulletsToReload;
+            isReloading = false;
+            reloadTime = maxTime;
+        }
+    }
+
+    void Fire()
+    {
+        if (shoot)
+        {
+            shoot = false;
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, range))
             {
-                hit.rigidbody.AddForce(-hit.normal * impactForce);
+                Inimigo e = hit.transform.GetComponent<Inimigo>();
+                if (e != null)
+                {
+                    e.TakeDamage(damageAmount);
+                    return;
+                }
+
+                if (hit.rigidbody != null)
+                {
+                    hit.rigidbody.AddForce(-hit.normal * impactForce);
+                }
             }
         }
     }
