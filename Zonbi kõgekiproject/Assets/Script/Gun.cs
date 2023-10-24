@@ -5,7 +5,7 @@ using TMPro;
 
 public class Gun : MonoBehaviour
 {
-    [Header("Munição")]
+    [Header("Contador de Munição")]
     public float ammo;
     public float totalAmmo;
 
@@ -27,19 +27,22 @@ public class Gun : MonoBehaviour
     public float reloadTime;
     public float maxTime;
     
-    [Header("Contador de Munição e Balas")]
+    [Header("Contador de Munição Canva")]
     public TextMeshProUGUI ammoText; 
     public TextMeshProUGUI totalammoText;
 
+    [Header("Áudios")]
     public AudioSource FireSound;
+    public AudioSource ReloadSound;
 
+    [Header("Particulas e Flash")]
+    public ParticleSystem muzzeFlash;
+    
     public bool shoot;
     public bool isReloading;
 
     Animator anim;
 
-    public GameObject MuzzeFlash;
-    public GameObject MuzzeLight;
 
     void Start()
     {
@@ -78,6 +81,7 @@ public class Gun : MonoBehaviour
         {
             anim.Play("ReloadRifle");
             anim.Play("ReloadPistol");
+            ReloadSound.Play();
             isReloading = true;
         }
     }
@@ -99,10 +103,12 @@ public class Gun : MonoBehaviour
     {
         if (shoot)
         {
+
             shoot = false;
             anim.Play("FireRifle");
             anim.Play("FirePistol");
             FireSound.Play();
+            muzzeFlash.Play();
 
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, range))
