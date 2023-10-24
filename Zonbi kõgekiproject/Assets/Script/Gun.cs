@@ -5,27 +5,41 @@ using TMPro;
 
 public class Gun : MonoBehaviour
 {
+    [Header("Munição")]
     public float ammo;
     public float totalAmmo;
 
+    [Header("Distancia, Força e Dano")]
     public float range;
     public float impactForce;
     public float damageAmount;
 
+    [Header("Tempo de Disparo")]
     public float nextShoot;
     public float shootTime;
 
+    [Header("Número de Balas no pente")]
     public float num;
     public float magazine;
+
+
+    [Header("Tempo de recarregamento")]
     public float reloadTime;
     public float maxTime;
     
-    public TextMeshProUGUI ammoText, totalammoText;
+    [Header("Contador de Munição e Balas")]
+    public TextMeshProUGUI ammoText; 
+    public TextMeshProUGUI totalammoText;
+
+    public AudioSource FireSound;
 
     public bool shoot;
     public bool isReloading;
 
     Animator anim;
+
+    public GameObject MuzzeFlash;
+    public GameObject MuzzeLight;
 
     void Start()
     {
@@ -88,6 +102,7 @@ public class Gun : MonoBehaviour
             shoot = false;
             anim.Play("FireRifle");
             anim.Play("FirePistol");
+            FireSound.Play();
 
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, range))
@@ -105,5 +120,6 @@ public class Gun : MonoBehaviour
                 }
             }
         }
+
     }
 }
