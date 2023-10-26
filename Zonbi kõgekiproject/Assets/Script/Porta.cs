@@ -1,29 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Porta : MonoBehaviour
 {
+    public GameObject mensagem;
+    public Transform player;
+    public Vector3 novaPosicao;
 
-    public GameObject Door;
+    private bool jogadorSobreTrigger = false;
 
     void Start()
     {
-
+        mensagem.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (jogadorSobreTrigger)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                MoverJogadorParaNovaPosicao();
+            }
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void MoverJogadorParaNovaPosicao()
     {
-        if(other.gameObject.CompareTag ("Player"))
+        player.position = novaPosicao;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            SceneManager.LoadSceneAsync("Corredor");
+            mensagem.SetActive(true);
+            jogadorSobreTrigger = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            mensagem.SetActive(false);
+            jogadorSobreTrigger = false;
         }
     }
 }

@@ -16,6 +16,13 @@ public class Inimigo : MonoBehaviour
     public float velocidadeInimigo;
     private GameObject maoInimigo;
 
+    [SerializeField]private AudioSource attackAudioSource;
+    [SerializeField]private AudioSource deathAudioSource;
+    [SerializeField]private AudioSource passosAudioSource;
+    [SerializeField]private AudioClip[] passosAudioClip;
+    [SerializeField]private AudioSource damageAudioSource;
+    [SerializeField]private AudioClip[] damageAudioClip;
+
     void Awake()
     {
         
@@ -39,6 +46,7 @@ public class Inimigo : MonoBehaviour
         
         if (Vector3.Distance(transform.position, player.transform.position) < 1.5f)
         {
+            attackAudioSource.Play();
             navMesh.speed = 1;
             maoInimigo.SetActive(true);
             animInimigo.SetBool("atack", true);
@@ -50,13 +58,16 @@ public class Inimigo : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        damageAudioSource.PlayOneShot(damageAudioClip[Random.Range(0, damageAudioClip.Length)]);
         currentHealth -= damageAmount;
         if(currentHealth <= 0)
         {
+            deathAudioSource.Play();
             animInimigo.SetBool("death", true);
             navMesh.speed = 0;
             Destroy(gameObject, 5.0f);
         }
+
 
     }
 
@@ -68,5 +79,10 @@ public class Inimigo : MonoBehaviour
         yield return new WaitForSeconds(2.8f);
         maoInimigo.SetActive(false);
         navMesh.speed = velocidadeInimigo;
+    }
+
+    private void Passos()
+    {
+        passosAudioSource.PlayOneShot(passosAudioClip[Random.Range(0, passosAudioClip.Length)]);
     }
 }
