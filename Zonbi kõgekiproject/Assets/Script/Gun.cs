@@ -40,6 +40,7 @@ public class Gun : MonoBehaviour
     
     public bool shoot;
     public bool isReloading;
+    public GameObject MensagemAtirar;
 
     Animator anim;
 
@@ -58,6 +59,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetMouseButton(0) && ammo > 0 && Time.time > nextShoot)
         {
+            MensagemAtirar.SetActive(false);
             shoot = true;
             nextShoot = Time.time + shootTime;
             ammo--;
@@ -127,5 +129,10 @@ public class Gun : MonoBehaviour
             }
         }
 
+    }
+    
+    public void AddAmmo(int amount)
+    {
+        totalAmmo += amount;
     }
 }

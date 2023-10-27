@@ -16,13 +16,12 @@ public class PlayerController : MonoBehaviour
     public float croushingSpeed;
     bool croush, croushing;
     bool isCrouching = false; // Variável para controlar se o jogador está agachado
-    
+    bool isRunning = false; // Variável para controlar se o jogador está correndo
+
     [SerializeField] private Transform camPivot;
     [SerializeField] private Transform cam;
 
     public Vector3 GetForwardDirection() => transform.forward;
-
-    private bool isRunning = false;
 
     void Start()
     {
@@ -37,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
         if (VidaPlayer <= 0)
         {
-            SceneManager.LoadSceneAsync("GameOver");
+            SceneManager.LoadScene("GameOver");
             Cursor.lockState = CursorLockMode.None;
         }
 
@@ -108,4 +107,10 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
     }
+    
+    public void AddVida(int amount)
+    {
+        VidaPlayer += amount;
+    }
+
 }

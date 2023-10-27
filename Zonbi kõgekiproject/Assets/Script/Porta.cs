@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Porta : MonoBehaviour
 {
+    public GameObject mensagemAtirar;
     public GameObject mensagem;
     public Transform player;
     public Vector3 novaPosicao;
@@ -29,6 +30,7 @@ public class Porta : MonoBehaviour
     void MoverJogadorParaNovaPosicao()
     {
         player.position = novaPosicao;
+        mensagemAtirar.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)

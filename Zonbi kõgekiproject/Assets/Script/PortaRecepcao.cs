@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PortaRecepcao : MonoBehaviour
 {
+    public GameObject AcheChave;
     public GameObject mensagemPortaTrancada;
     public GameObject mensagemPorta;
     public Transform player;
@@ -20,10 +21,12 @@ public class PortaRecepcao : MonoBehaviour
             if (PlayerChave.peguei == true)
             {
                 mensagemPorta.SetActive(true);
+                AcheChave.SetActive(false);
             }
             else
             {
                 mensagemPortaTrancada.SetActive(true);
+                AcheChave.SetActive(false);
             }
         }
     }
@@ -35,7 +38,14 @@ public class PortaRecepcao : MonoBehaviour
             jogadorSobreTrigger = false;
             mensagemPorta.SetActive(false);
             mensagemPortaTrancada.SetActive(false);
+            AcheChave.SetActive(true);
+
+            if(AcheChave == true)
+            {
+                Destroy(AcheChave, 3.0f);
+            }
         }
+
     }
 
     void Update()
